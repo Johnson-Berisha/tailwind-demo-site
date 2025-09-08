@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 min-h-screen text-gray-100">
+    <main className="flex flex-col gap-20 items-center min-h-screen text-gray-100">
       {/* Header */}
-      <header className="flex items-center justify-between w-full px-8 py-4 border-b border-gray-700 shadow-md">
-        <h1 className="text-3xl font-bold text-blue-500 tracking-wide drop-shadow-md">
+      <header className="flex items-center justify-between px-8 py-2 border rounded-full border-gray-700 shadow-md mt-5 w-3xl">
+        <h1 className="text-2xl font-bold text-blue-500 tracking-wide drop-shadow-md">
           ExposiT
         </h1>
         <nav className="space-x-6">
@@ -22,7 +22,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="px-10 mt-12 space-y-8">
+      <section className="mt-20  space-y-8">
         {/* Chat Notification */}
         <div className="bg-zinc-800 bg-opacity-80 backdrop-blur-sm inline-flex items-center px-5 py-3 rounded-md mb-8 shadow-lg">
           <span className="inline-block w-2 h-2 mr-3 bg-gray-300 rounded-full"></span>
@@ -30,7 +30,7 @@ export default function Home() {
         </div>
 
         {/* Main Title */}
-        <div className="max-w-lg space-y-4">
+        <div className="max-w-2xl space-y-4">
           <h1 className="text-5xl font-extrabold leading-tight text-white drop-shadow-lg">
             Code destruction for the age of AI
           </h1>
@@ -53,6 +53,26 @@ export default function Home() {
           >
             Request 99.89$ Demo
           </Link>
+        </div>
+
+      </section>
+      <section className="cards">
+        <div className="title text-center mb-5">
+          <p className="font-bold">Hated by 45,000+ developers at shit engenering orgs</p>
+        </div>
+        <div className="indv-cards flex gap-5">
+          <div className="card border-gray-700 py-10 px-4 border-1 text-center w-40 rounded-xl">
+            <h1 className="font-bold">LanguageBird</h1>
+          </div>
+          <div className="card border-gray-700 py-10 px-4 border-1 text-center w-40 rounded-xl">
+            <h1 className="font-bold">DeployRcel</h1>
+          </div>
+          <div className="card border-gray-700 py-10 px-4 border-1 text-center w-40 rounded-xl">
+            <h1 className="font-bold">UTube</h1>
+          </div>
+          <div className="card border-gray-700 py-10 px-4 border-1 text-center w-40 rounded-xl">
+            <h1 className="font-bold">FaceNoteBook</h1>
+          </div>
         </div>
       </section>
     </main>
