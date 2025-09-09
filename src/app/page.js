@@ -1,6 +1,40 @@
+"use client";
+
 import Link from "next/link";
+import { useRef, useState, useEffect } from "react";
 
 export default function Home() {
+  const canvasRef = useRef(null);
+  const [isDrawing, setIsDrawing] = useState(false);
+
+  const startDrawing = (e) => {
+    setIsDrawing(true);
+    draw(e);
+  };
+  const stopDrawing = () => setIsDrawing(false);
+
+  const draw = (e) => {
+    if (!isDrawing || !canvasRef.current) return;
+    const ctx = canvasRef.current.getContext("2d");
+    if (!ctx) return;
+
+    const rect = canvasRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.fill();
+  };
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.width = 600;
+    canvas.height = 400;
+  }, []);
+
   return (
     <main className="flex flex-col gap-20 items-center min-h-screen text-gray-100">
       {/* Header */}
@@ -74,6 +108,15 @@ export default function Home() {
             <h1 className="font-bold">FaceNoteBook</h1>
           </div>
         </div>
+      </section>
+      <section className="drawingstuff">
+        <h3 className="font-bold text-center mb-2">Bored? Draw some shit below!</h3>
+        <canvas 
+        ref={canvasRef}
+        onMouseDown={startDrawing}
+        onMouseUp={stopDrawing}
+        onMouseMove={draw}
+        className="bg-white mb-10 rounded-2xl" />
       </section>
     </main>
   );
