@@ -7,6 +7,7 @@ export default function Home() {
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [lastPos, setLastPos] = useState(null);
+  const [color, setColor] = useState("black");
 
   const startDrawing = (e) => {
     setIsDrawing(true);
@@ -30,8 +31,8 @@ export default function Home() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-   ctx.strokeStyle = "black";
-   ctx.lineWidth = 2;
+   ctx.strokeStyle = color;
+   ctx.lineWidth = color === "white" ? 10 : 2;
    ctx.lineCap = "round";
 
    ctx.beginPath();
@@ -41,6 +42,11 @@ export default function Home() {
 
    setLastPos({ x, y });
   };
+
+  const clearCanvas = () => {
+    const ctx = canvasRef.current.getContext("2d");
+    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -125,6 +131,14 @@ export default function Home() {
       </section>
       <section className="drawingstuff">
         <h3 className="font-bold text-center mb-2">Bored? Draw some shit below!</h3>
+        <div className="flex gap-2 pb-5 justify-center">
+          <button className="px-2 py-1 border" onClick={() => setColor("black")}>Black</button>
+          <button className="px-2 py-1 border" onClick={() => setColor("red")}>Red</button>
+          <button className="px-2 py-1 border" onClick={() => setColor("blue")}>Blue</button>
+          <button className="px-2 py-1 border" onClick={() => setColor("green")}>Green</button>
+          <button className="px-2 py-1 border" onClick={() => setColor("white")}>Erase</button>
+          <button className="px-2 py-1 border" onClick={clearCanvas}>Clear</button>
+        </div>
         <canvas 
         ref={canvasRef}
         onMouseDown={startDrawing}
