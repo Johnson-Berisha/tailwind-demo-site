@@ -1,20 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, use } from "react";
 
 export default function Home() {
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [lastPos, setLastPos] = useState(null);
 
   const startDrawing = (e) => {
     setIsDrawing(true);
-    draw(e);
+    const rect = canvasRef.current.getBoundingClientRect();
+    setLastPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
   };
-  const stopDrawing = () => setIsDrawing(false);
+  const stopDrawing = () => {
+    setIsDrawing(false);
+    setLastPos(null);
+  };
 
   const draw = (e) => {
-    if (!isDrawing || !canvasRef.current) return;
+    if (!isDrawing || !canvasRef.current || !lastPos) return;
     const ctx = canvasRef.current.getContext("2d");
     if (!ctx) return;
 
@@ -22,10 +30,16 @@ export default function Home() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.arc(x, y, 2, 0, Math.PI * 2);
-    ctx.fill();
+   ctx.strokeStyle = "black";
+   ctx.lineWidth = 2;
+   ctx.lineCap = "round";
+
+   ctx.beginPath();
+   ctx.moveTo(lastPos.x, lastPos.y);
+   ctx.lineTo(x, y);
+   ctx.stroke();
+
+   setLastPos({ x, y });
   };
 
   useEffect(() => {
@@ -115,8 +129,9 @@ export default function Home() {
         ref={canvasRef}
         onMouseDown={startDrawing}
         onMouseUp={stopDrawing}
+        onMouseOut={stopDrawing}
         onMouseMove={draw}
-        className="bg-white mb-10 rounded-2xl" />
+        className="bg-white mb-10 rounded-2xl cursor-pointer" />
       </section>
     </main>
   );
