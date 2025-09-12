@@ -132,12 +132,12 @@ export default function Home() {
       <section className="drawingstuff">
         <h3 className="font-bold text-center mb-2">Bored? Draw some shit below!</h3>
         <div className="flex gap-2 pb-5 justify-center">
-          <button className="px-2 py-1 border" onClick={() => setColor("black")}>Black</button>
-          <button className="px-2 py-1 border" onClick={() => setColor("red")}>Red</button>
-          <button className="px-2 py-1 border" onClick={() => setColor("blue")}>Blue</button>
-          <button className="px-2 py-1 border" onClick={() => setColor("green")}>Green</button>
-          <button className="px-2 py-1 border" onClick={() => setColor("white")}>Erase</button>
-          <button className="px-2 py-1 border" onClick={clearCanvas}>Clear</button>
+          <button className="p-4 bg-black rounded-full cursor-pointer broder border-1 border-gray-400" onClick={() => setColor("black")}></button>
+          <button className="p-4 bg-red-600 rounded-full cursor-pointer broder border-1 border-gray-400" onClick={() => setColor("red")}></button>
+          <button className="p-4 bg-blue-600 cursor-pointer rounded-full broder border-1 border-gray-400" onClick={() => setColor("blue")}></button>
+          <button className="p-4 bg-green-600 rounded-full broder border-1 border-gray-400 cursor-pointer" onClick={() => setColor("green")}></button>
+          <button className="px-2 py-1 hover:bg-gray-900 transition border rounded-2xl cursor-pointer" onClick={() => setColor("white")}>Erase</button>
+          <button className="px-2 py-1 border rounded-2xl hover:bg-gray-900 transition cursor-pointer" onClick={clearCanvas}>Clear</button>
         </div>
         <canvas 
         ref={canvasRef}
