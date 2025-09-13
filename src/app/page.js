@@ -58,7 +58,9 @@ export default function Home() {
   return (
     <main className="flex flex-col gap-20 items-center min-h-screen text-gray-100">
       {/* Header */}
-      <header className="flex items-center justify-between px-8 py-2 border rounded-full border-gray-700 shadow-md mt-5 w-3xl">
+      <header className="w-full sm:max-2xl lg:max-w-3xl mx-auto flex items-center justify-between px-8 py-2 border rounded-full border-gray-700 shadow-md mt-5">
+
+
         <h1 className="text-2xl font-bold text-blue-500 tracking-wide drop-shadow-md">
           ExposiT
         </h1>
@@ -112,7 +114,7 @@ export default function Home() {
       </section>
       <section className="cards">
         <div className="title text-center mb-5">
-          <p className="font-bold">Hated by 45,000+ developers at shit engenering orgs</p>
+          <p className="font-bold">Hated by 45,000+ developers at amazing engenering orgs</p>
         </div>
         <div className="indv-cards flex gap-5">
           <div className="card border-gray-700 py-10 px-4 border-1 text-center w-40 rounded-xl">
@@ -130,7 +132,7 @@ export default function Home() {
         </div>
       </section>
       <section className="drawingstuff">
-        <h3 className="font-bold text-center mb-2">Bored? Draw some shit below!</h3>
+        <h3 className="font-bold text-center mb-2">Bored? Draw some stuff below!</h3>
         <div className="flex gap-2 pb-5 justify-center">
           <button className="p-4 bg-black rounded-full cursor-pointer broder border-1 border-gray-400" onClick={() => setColor("black")}></button>
           <button className="p-4 bg-red-600 rounded-full cursor-pointer broder border-1 border-gray-400" onClick={() => setColor("red")}></button>
